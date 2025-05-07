@@ -14,6 +14,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.wealthwise.R
 import com.example.wealthwise.domain.model.TransactionType
 import com.example.wealthwise.presentation.features.transactions.viewmodel.AddTransactionViewModel
+import com.example.wealthwise.presentation.features.transactions.viewmodel.AddTransactionUiState
 import java.math.BigDecimal
 import java.time.LocalDate
 

@@ -118,15 +118,7 @@ fun AddTaskScreen(
 
             Button(
                 onClick = {
-                    viewModel.createTask(
-                        title = title,
-                        description = description,
-                        amount = amount,
-                        dueDate = dueDate,
-                        category = category,
-                        isRecurring = isRecurring,
-                        recurringPeriod = recurringPeriod
-                    )
+                    viewModel.createTask(title, description, amount, dueDate, category, isRecurring, recurringPeriod)
                 },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = !uiState.isLoading

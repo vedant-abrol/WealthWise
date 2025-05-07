@@ -91,6 +91,11 @@ graph LR
 ```
 
 ### Task Management
+<div style="display: flex; gap: 20px;">
+    <img src="screenshots/task_list.png" alt="Task List Screen" width="300"/>
+    <img src="screenshots/add_task.png" alt="Add Task Screen" width="300"/>
+</div>
+
 ```mermaid
 graph LR
     A[Task List] --> B[Add Task]

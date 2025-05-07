@@ -21,6 +21,7 @@ import com.example.wealthwise.presentation.features.transactions.viewmodel.Trans
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import androidx.compose.material.icons.filled.Search
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,7 +40,7 @@ fun TransactionListScreen(
                 title = { Text(stringResource(R.string.transactions)) },
                 actions = {
                     IconButton(onClick = { showFilterMenu = true }) {
-                        Icon(Icons.Default.FilterList, contentDescription = stringResource(R.string.filter))
+                        Icon(Icons.Default.Search, contentDescription = stringResource(R.string.filter))
                     }
                     IconButton(onClick = onAddTransaction) {
                         Icon(Icons.Default.Add, contentDescription = stringResource(R.string.add_transaction))
@@ -83,23 +84,23 @@ fun TransactionListScreen(
 
         if (showFilterMenu) {
             FilterMenu(
-                selectedType = uiState.selectedType,
-                selectedCategory = uiState.selectedCategory,
-                onTypeSelected = { viewModel.setTransactionType(it) },
-                onCategorySelected = { viewModel.setCategory(it) },
-                onDateRangeSelected = { showDateRangePicker = true },
-                onClearFilters = { viewModel.clearFilters() },
-                onDismiss = { showFilterMenu = false }
+                uiState.selectedType,
+                uiState.selectedCategory,
+                { viewModel.setTransactionType(it) },
+                { viewModel.setCategory(it) },
+                { showDateRangePicker = true },
+                { viewModel.clearFilters() },
+                { showFilterMenu = false }
             )
         }
 
         if (showDateRangePicker) {
             DateRangePickerDialog(
-                onDateRangeSelected = { start, end ->
+                { start, end ->
                     viewModel.setDateRange(start, end)
                     showDateRangePicker = false
                 },
-                onDismiss = { showDateRangePicker = false }
+                { showDateRangePicker = false }
             )
         }
     }
@@ -297,7 +298,7 @@ fun FilterMenu(
                         FilterChip(
                             selected = selectedType == type,
                             onClick = { onTypeSelected(type) },
-                            label = { Text(stringResource(type.name.lowercase())) }
+                            label = { Text(type.name.replaceFirstChar { it.uppercase() }) }
                         )
                     }
                 }

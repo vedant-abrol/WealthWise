@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.wealthwise.data.database.AppDatabase
 import com.example.wealthwise.data.database.dao.FinancialTaskDao
+import com.example.wealthwise.data.database.dao.TransactionDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,5 +30,11 @@ object DatabaseModule {
     @Singleton
     fun provideFinancialTaskDao(appDatabase: AppDatabase): FinancialTaskDao {
         return appDatabase.financialTaskDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTransactionDao(appDatabase: AppDatabase): TransactionDao {
+        return appDatabase.transactionDao()
     }
 } 

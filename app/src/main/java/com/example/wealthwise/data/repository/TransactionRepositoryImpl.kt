@@ -25,13 +25,15 @@ class TransactionRepositoryImpl @Inject constructor(
         startDate: LocalDate,
         endDate: LocalDate
     ): Flow<List<Transaction>> {
-        return transactionDao.getTransactionsInDateRange(startDate, endDate).map { entities ->
+        val startDateTime = startDate.atStartOfDay()
+        val endDateTime = endDate.atTime(23, 59, 59)
+        return transactionDao.getTransactionsInDateRange(startDateTime, endDateTime).map { entities ->
             entities.map { it.toDomain() }
         }
     }
 
     override fun getTransactionsByType(type: TransactionType): Flow<List<Transaction>> {
-        return transactionDao.getTransactionsByType(type).map { entities ->
+        return transactionDao.getTransactionsByType(type.name).map { entities ->
             entities.map { it.toDomain() }
         }
     }
@@ -55,15 +57,15 @@ class TransactionRepositoryImpl @Inject constructor(
     }
 
     override fun getBalance(): Flow<BigDecimal> {
-        return transactionDao.getBalance()
+        return transactionDao.getBalance().map { it ?: BigDecimal.ZERO }
     }
 
     override fun getTotalIncome(): Flow<BigDecimal> {
-        return transactionDao.getTotalIncome()
+        return transactionDao.getTotalIncome().map { it ?: BigDecimal.ZERO }
     }
 
     override fun getTotalExpenses(): Flow<BigDecimal> {
-        return transactionDao.getTotalExpenses()
+        return transactionDao.getTotalExpenses().map { it ?: BigDecimal.ZERO }
     }
 
     private fun TransactionEntity.toDomain(): Transaction {

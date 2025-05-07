@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.time.LocalDate
@@ -82,7 +84,7 @@ class TransactionListViewModel @Inject constructor(
                     isLoading = false,
                     error = context.getString(R.string.load_error, e.message)
                 )
-            }.collect()
+            }.onEach { }.launchIn(viewModelScope)
         }
     }
 

@@ -100,7 +100,7 @@ class AddTransactionViewModel @Inject constructor(
                     amount = BigDecimal(currentState.amount),
                     type = currentState.type,
                     category = currentState.category,
-                    date = currentState.date,
+                    date = currentState.date.atStartOfDay(),
                     createdAt = LocalDateTime.now()
                 )
 

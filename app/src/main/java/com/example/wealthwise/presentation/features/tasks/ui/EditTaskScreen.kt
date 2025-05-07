@@ -151,15 +151,7 @@ private fun EditTaskContent(
 
         Button(
             onClick = {
-                onUpdateTask(
-                    title = title,
-                    description = description,
-                    amount = amount,
-                    dueDate = dueDate,
-                    category = category,
-                    isRecurring = isRecurring,
-                    recurringPeriod = recurringPeriod
-                )
+                onUpdateTask(title, description, amount, dueDate, category, isRecurring, recurringPeriod)
             },
             modifier = Modifier.fillMaxWidth()
         ) {

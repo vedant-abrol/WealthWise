@@ -42,7 +42,7 @@ fun NavGraph(
                 onTaskClick = { taskId ->
                     navController.navigate(Screen.TaskDetails.createRoute(taskId))
                 },
-                onAddTask = {
+                onAddTaskClick = {
                     navController.navigate(Screen.AddTask.route)
                 }
             )
@@ -53,7 +53,8 @@ fun NavGraph(
             arguments = listOf(
                 navArgument("taskId") { type = NavType.LongType }
             )
-        ) {
+        ) { backStackEntry ->
+            val taskId = backStackEntry.arguments?.getLong("taskId") ?: 0L
             TaskDetailsScreen(
                 onNavigateBack = { navController.popBackStack() },
                 onEditTask = { taskId ->
