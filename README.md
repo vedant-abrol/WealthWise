@@ -92,8 +92,8 @@ graph LR
 
 ### Task Management
 <div style="display: flex; gap: 20px;">
-    <img src="screenshots/task_list.png" alt="Task List Screen" width="300"/>
-    <img src="screenshots/add_task.png" alt="Add Task Screen" width="300"/>
+    <img width="256" alt="Image" src="https://github.com/user-attachments/assets/1125a183-e480-42f7-a173-d1f9b2339286" />
+    <img width="268" alt="Image" src="https://github.com/user-attachments/assets/5354795b-7acd-44bf-90c8-2d0e65e65e49" />
 </div>
 
 ```mermaid
